@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class BinaryConversion {
+public class Solution {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -15,16 +15,18 @@ public class BinaryConversion {
             binaryNum.add(remainder);
         }
 
-        int countConsecutive[] = {binaryNum.size()};
+        int countConsecutive = 0;
+        int maxConsecutive = 0;
 
-        for(int i = 0; i < binaryNum.size()-1; i++){
-            for(int j = 0; j < binaryNum.size()-1; j++){
-                if(binaryNum.get(i) == binaryNum.get(i+1) && binaryNum.get(i) == 1){
-                    countConsecutive[i] += 1;
-                }
+        for(int i = 0; i < binaryNum.size(); i++){
+            if(binaryNum.get(i) == 1){
+                countConsecutive += 1;
+                maxConsecutive = Math.max(maxConsecutive, countConsecutive);
+            } else {
+                countConsecutive = 0;
             }
         }
 
-        System.out.println(countConsecutive);
+        System.out.println(maxConsecutive);
     }
 }
